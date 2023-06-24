@@ -1,15 +1,19 @@
 #include "renderer\Renderer.h"
-#include "utils\SpriteSheet.h"
+
 #include "AnimatedSprite.h"
 #include "Player.h"
 #include "Collectable.h"
 #include "Coin.h"
 #include "Tile.h"
 
+#include "utils\MapLoader.h"
+#include "utils\SpriteSheet.h"
+
 #include <iostream>
 
 void ScrollCallback(GLFWwindow* window, double xoffset, double yoffset);
 std::vector<glm::vec4> GenerateAnimation(SpriteSheet& spriteSheet, std::vector<unsigned int> spriteIndices);
+void LoadMap(std::vector<Tile*>& tiles, MapLoader& loader, const std::string& mapName);
 
 float ZOOM = 0.0f;
 
@@ -30,17 +34,23 @@ int main()
 	std::vector<AnimatedSprite*> sprites;
 	std::vector<Tile*> tiles;
 
+	// Init tiles.
 	Tile initTile(GrassMiddle, glm::vec2(0.0f));
 	initTile.Init(tilesTexture);
 
-	for (float y = 0.0f; y < 1600.0f; y+=16.0f)
-	{
-		for (int x = 0.0f; x < 1600.0f; x+=16.0f)
-		{
-			Tile* tile = new Tile(DirtBottomLeft, glm::vec2(x, y));
-			tiles.push_back(tile);
-		}
-	}
+	// Load map.
+	MapLoader mapLoader;
+	mapLoader.LoadMap("Level 1", "res/maps/map1.txt");
+	LoadMap(tiles, mapLoader, "Level 1");
+
+	//for (float y = 0.0f; y < 1600.0f; y+=16.0f)
+	//{
+	//	for (int x = 0.0f; x < 1600.0f; x+=16.0f)
+	//	{
+	//		Tile* tile = new Tile(DirtBottomLeft, glm::vec2(x, y));
+	//		tiles.push_back(tile);
+	//	}
+	//}
 
 	Player player;
 	player.SetPosition(glm::vec2(0.0f, 256.0f));
@@ -140,4 +150,34 @@ std::vector<glm::vec4> GenerateAnimation(SpriteSheet& spriteSheet, std::vector<u
 		animation.push_back(spriteSheet.GetTexCoords(row, col, 1, 1));
 	}
 	return animation;
+}
+void LoadMap(std::vector<Tile*>& tiles, MapLoader& loader, const std::string& mapName)
+{
+	std::unordered_map<int, TileType> tileIDToType;
+	tileIDToType[1] = GrassMiddle;
+	tileIDToType[2] = GrassLeft;
+	tileIDToType[3] = DirtLeft;
+	tileIDToType[4] = DirtRight;
+	tileIDToType[5] = DirtMiddle;
+	tileIDToType[6] = GrassRight;
+	tileIDToType[7] = DirtBottomMiddle;
+	tileIDToType[8] = DirtBottomLeft;
+	tileIDToType[9] = DirtBottomRight;
+
+	std::vector< std::vector<int> > map = loader.GetMap(mapName);
+	float y = 0.0f;
+	for (size_t rowIndex = map.size() - 1; rowIndex > 0; rowIndex--)
+	{
+		float x = 0.0f;
+		for (int tileID : map[rowIndex])
+		{
+			if (tileID != 0)
+			{
+				Tile* tile = new Tile(tileIDToType[tileID], glm::vec2(x, y));
+				tiles.push_back(tile);
+			}
+			x += 16.0f;
+		}
+		y += 16.0f;
+	}
 }

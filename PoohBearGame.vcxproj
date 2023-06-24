@@ -155,6 +155,7 @@
     <ClCompile Include="src\Application.cpp" />
     <ClCompile Include="src\AnimatedSprite.cpp" />
     <ClCompile Include="src\Collectable.cpp" />
+    <ClCompile Include="src\utils\MapLoader.cpp" />
     <ClCompile Include="SRC\Player.cpp" />
     <ClCompile Include="src\renderer\Shader.cpp" />
     <ClCompile Include="src\renderer\Renderer.cpp" />
@@ -453,6 +454,7 @@
     <ClInclude Include="src\AnimatedSprite.h" />
     <ClInclude Include="src\Coin.h" />
     <ClInclude Include="src\Collectable.h" />
+    <ClInclude Include="src\utils\MapLoader.h" />
     <ClInclude Include="src\Player.h" />
     <ClInclude Include="src\renderer\Shader.h" />
     <ClInclude Include="src\renderer\Renderer.h" />
@@ -597,9 +599,7 @@
     <None Include="deps\include\GLM\gtx\vector_angle.inl" />
     <None Include="deps\include\GLM\gtx\vector_query.inl" />
     <None Include="deps\include\GLM\gtx\wrap.inl" />
-    <None Include="res\shaders\F_Simple.shader" />
     <None Include="res\shaders\Shader.glsl" />
-    <None Include="res\shaders\V_Simple.shader" />
   </ItemGroup>
   <ItemGroup>
     <Image Include="res\sprites\coin.png" />
@@ -609,6 +609,9 @@
   </ItemGroup>
   <ItemGroup>
     <Library Include="deps\libs\glfw3.lib" />
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="res\maps\map1.txt" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

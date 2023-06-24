@@ -21,7 +21,6 @@ void Tile::Draw(Renderer2D& renderer)
 {
 	renderer.AddQuad(m_position, SIZE, s_texCoords[m_tileType], s_texID);
 }
-
 void Tile::Init(float texID)
 {
 	s_texID = texID;

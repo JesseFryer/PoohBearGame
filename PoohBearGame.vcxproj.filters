@@ -48,6 +48,9 @@
     <ClCompile Include="src\renderer\Shader.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="src\utils\MapLoader.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="deps\include\GLAD\glad.h">
@@ -935,6 +938,9 @@
     <ClInclude Include="src\renderer\Shader.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="src\utils\MapLoader.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="deps\include\GLM\detail\func_common.inl">
@@ -1345,8 +1351,6 @@
     <None Include="deps\include\GLM\gtx\wrap.inl">
       <Filter>Header Files</Filter>
     </None>
-    <None Include="res\shaders\F_Simple.shader" />
-    <None Include="res\shaders\V_Simple.shader" />
     <None Include="res\shaders\Shader.glsl" />
   </ItemGroup>
   <ItemGroup>
@@ -1365,5 +1369,8 @@
   </ItemGroup>
   <ItemGroup>
     <Library Include="deps\libs\glfw3.lib" />
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="res\maps\map1.txt" />
   </ItemGroup>
 </Project>
