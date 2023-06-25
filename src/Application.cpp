@@ -1,6 +1,5 @@
 #include "renderer\Renderer.h"
 
-#include "AnimatedSprite.h"
 #include "Player.h"
 #include "Collectable.h"
 #include "Coin.h"
@@ -14,6 +13,7 @@
 void ScrollCallback(GLFWwindow* window, double xoffset, double yoffset);
 std::vector<glm::vec4> GenerateAnimation(SpriteSheet& spriteSheet, std::vector<unsigned int> spriteIndices);
 void LoadMap(std::vector<Tile*>& tiles, MapLoader& loader, const std::string& mapName);
+bool HasCollided(glm::vec4 rect1, glm::vec4 rect2);
 
 float ZOOM = 0.0f;
 
@@ -33,6 +33,7 @@ int main()
 	// Setup entity containers
 	std::vector<AnimatedSprite*> sprites;
 	std::vector<Tile*> tiles;
+	std::vector<Entity*> entities;
 
 	// Init tiles.
 	Tile initTile(GrassMiddle, glm::vec2(0.0f));
@@ -42,15 +43,6 @@ int main()
 	MapLoader mapLoader;
 	mapLoader.LoadMap("Level 1", "res/maps/map1.txt");
 	LoadMap(tiles, mapLoader, "Level 1");
-
-	//for (float y = 0.0f; y < 1600.0f; y+=16.0f)
-	//{
-	//	for (int x = 0.0f; x < 1600.0f; x+=16.0f)
-	//	{
-	//		Tile* tile = new Tile(DirtBottomLeft, glm::vec2(x, y));
-	//		tiles.push_back(tile);
-	//	}
-	//}
 
 	Player player;
 	player.SetPosition(glm::vec2(0.0f, 256.0f));
@@ -93,6 +85,8 @@ int main()
 	sprites.push_back(&coin2);
 	sprites.push_back(&coin3);
 
+	entities.push_back(&player);
+
 	float lastTime = 0.0f;
 	while (!glfwWindowShouldClose(window))
 	{
@@ -114,6 +108,29 @@ int main()
 		coin1.Update(timeStep);
 		coin2.Update(timeStep);
 		coin3.Update(timeStep);
+
+		// Check/Resolve collisions.
+		for (Entity* entity : entities)
+		{
+			entity->Move(entity->m_nextMoveX, 0.0f);
+			for (Tile* tile : tiles)
+			{
+				if (HasCollided(entity->GetRect(), tile->GetRect()))
+				{
+					entity->Move(-entity->m_nextMoveX, 0.0f);
+					break;
+				}
+			}
+			entity->Move(0.0f, entity->m_nextMoveY);
+			for (Tile* tile : tiles)
+			{
+				if (HasCollided(entity->GetRect(), tile->GetRect()))
+				{
+					entity->Move(0.0f, -entity->m_nextMoveY);
+					break;
+				}
+			}
+		}
 
 		glm::vec2 camPos(player.GetPosition()[0] + (player.GetSize()[0] * 0.5), player.GetPosition()[1] + (player.GetSize()[1] * 0.5));
 		renderer.SetCameraPosition(camPos);
@@ -180,4 +197,16 @@ void LoadMap(std::vector<Tile*>& tiles, MapLoader& loader, const std::string& ma
 		}
 		y += 16.0f;
 	}
+}
+bool HasCollided(glm::vec4 rect1, glm::vec4 rect2)
+{
+	// vec4 -> x, y, width, height.
+	if (rect1[0] < rect2[0] + rect2[2] &&
+		rect1[0] + rect1[2] > rect2[0] &&
+		rect1[1] < rect2[1] + rect2[3] &&
+		rect1[1] + rect1[3] > rect2[1])
+	{
+		return true;
+	}
+	return false;
 }

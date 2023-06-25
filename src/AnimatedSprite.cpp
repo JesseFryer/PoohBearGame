@@ -34,6 +34,11 @@ float AnimatedSprite::GetTexID()
 	return m_spriteSheetID;
 }
 
+glm::vec4 AnimatedSprite::GetRect()
+{
+	return glm::vec4(m_position, m_size);
+}
+
 void AnimatedSprite::Move(float dx, float dy)
 {
 	m_position.x += dx;

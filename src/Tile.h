@@ -22,6 +22,7 @@ class Tile
 public:
 	Tile(TileType type, glm::vec2 postition);
 	TileType GetType();
+	glm::vec4 GetRect();
 
 	void Draw(Renderer2D& renderer);
 

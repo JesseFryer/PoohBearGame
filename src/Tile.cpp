@@ -17,6 +17,11 @@ TileType Tile::GetType()
 	return m_tileType;
 }
 
+glm::vec4 Tile::GetRect()
+{
+	return glm::vec4(m_position, SIZE);
+}
+
 void Tile::Draw(Renderer2D& renderer)
 {
 	renderer.AddQuad(m_position, SIZE, s_texCoords[m_tileType], s_texID);

@@ -22,6 +22,7 @@ public:
 	glm::vec2 GetSize();
 	glm::vec4 GetCurrentTexture();
 	float GetTexID();
+	glm::vec4 GetRect();
 
 	void Move(float dx, float dy);
 	void SetPosition(glm::vec2 position);

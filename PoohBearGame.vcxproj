@@ -155,6 +155,7 @@
     <ClCompile Include="src\Application.cpp" />
     <ClCompile Include="src\AnimatedSprite.cpp" />
     <ClCompile Include="src\Collectable.cpp" />
+    <ClCompile Include="src\Entity.cpp" />
     <ClCompile Include="src\utils\MapLoader.cpp" />
     <ClCompile Include="SRC\Player.cpp" />
     <ClCompile Include="src\renderer\Shader.cpp" />
@@ -454,6 +455,7 @@
     <ClInclude Include="src\AnimatedSprite.h" />
     <ClInclude Include="src\Coin.h" />
     <ClInclude Include="src\Collectable.h" />
+    <ClInclude Include="src\Entity.h" />
     <ClInclude Include="src\utils\MapLoader.h" />
     <ClInclude Include="src\Player.h" />
     <ClInclude Include="src\renderer\Shader.h" />
