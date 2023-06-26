@@ -115,19 +115,18 @@ int main()
 			entity->Move(entity->m_nextMoveX, 0.0f);
 			for (Tile* tile : tiles)
 			{
-				if (HasCollided(entity->GetRect(), tile->GetRect()))
+				while (HasCollided(entity->GetRect(), tile->GetRect()))
 				{
-					entity->Move(-entity->m_nextMoveX, 0.0f);
-					break;
+					entity->Move(-entity->m_nextMoveX * 0.2f, 0.0f);
 				}
 			}
 			entity->Move(0.0f, entity->m_nextMoveY);
 			for (Tile* tile : tiles)
 			{
-				if (HasCollided(entity->GetRect(), tile->GetRect()))
+				if (HasCollided(entity->GetRect(), tile->GetRect())) entity->Land();
+				while (HasCollided(entity->GetRect(), tile->GetRect()))
 				{
-					entity->Move(0.0f, -entity->m_nextMoveY);
-					break;
+					entity->Move(0.0f, -entity->m_nextMoveY * 0.2f);
 				}
 			}
 		}
