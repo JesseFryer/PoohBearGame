@@ -155,6 +155,7 @@
     <ClCompile Include="src\Application.cpp" />
     <ClCompile Include="src\AnimatedSprite.cpp" />
     <ClCompile Include="src\Collectable.cpp" />
+    <ClCompile Include="src\Enemy.cpp" />
     <ClCompile Include="src\Entity.cpp" />
     <ClCompile Include="src\utils\MapLoader.cpp" />
     <ClCompile Include="SRC\Player.cpp" />
@@ -162,6 +163,7 @@
     <ClCompile Include="src\renderer\Renderer.cpp" />
     <ClCompile Include="src\Tile.cpp" />
     <ClCompile Include="src\utils\SpriteSheet.cpp" />
+    <ClCompile Include="src\utils\UserInput.cpp" />
     <ClCompile Include="src\vendor\glad.c" />
     <ClCompile Include="src\renderer\stb_image.cpp" />
   </ItemGroup>
@@ -455,6 +457,7 @@
     <ClInclude Include="src\AnimatedSprite.h" />
     <ClInclude Include="src\Coin.h" />
     <ClInclude Include="src\Collectable.h" />
+    <ClInclude Include="src\Enemy.h" />
     <ClInclude Include="src\Entity.h" />
     <ClInclude Include="src\utils\MapLoader.h" />
     <ClInclude Include="src\Player.h" />
@@ -463,6 +466,7 @@
     <ClInclude Include="src\renderer\stb_image.h" />
     <ClInclude Include="src\Tile.h" />
     <ClInclude Include="src\utils\SpriteSheet.h" />
+    <ClInclude Include="src\utils\UserInput.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="deps\include\GLM\detail\func_common.inl" />
@@ -607,6 +611,7 @@
     <Image Include="res\sprites\coin.png" />
     <Image Include="res\sprites\PoohBear.png" />
     <Image Include="res\sprites\OldPooh.png" />
+    <Image Include="res\sprites\PoohBearSheet.png" />
     <Image Include="res\sprites\TileSet.png" />
   </ItemGroup>
   <ItemGroup>

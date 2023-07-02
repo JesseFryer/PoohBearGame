@@ -7,7 +7,12 @@ class SpriteSheet
 {
 public:
 	SpriteSheet(unsigned int sheetWidth, unsigned int sheetHeight, unsigned int tileWidth, unsigned int tileHeight);
-	glm::vec4 GetTexCoords(unsigned int spriteIndexX, unsigned int spriteIndexY, unsigned int tilesWide, unsigned int tilesHigh);
+	glm::vec4 GetTexCoords(
+		unsigned int spriteIndexX, 
+		unsigned int spriteIndexY, 
+		unsigned int tilesWide, 
+		unsigned int tilesHigh, 
+		bool flipped);
 
 	unsigned int GetTilesHigh();
 	unsigned int GetTilesWide();

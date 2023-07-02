@@ -2,6 +2,7 @@
 
 Entity::Entity() : AnimatedSprite()
 {
+	m_hitBox = glm::vec4(0.0f);
 }
 void Entity::Update(float timeStep)
 {
@@ -14,5 +15,20 @@ void Entity::Update(float timeStep)
 void Entity::Land()
 {
 	m_jumping = false;
-	m_yVelocity = 0.0f;
+}
+glm::vec4 Entity::GetHitBox()
+{
+	return glm::vec4(
+		GetPosition()[0] + m_hitBox[0], 
+		GetPosition()[1] + m_hitBox[1], 
+		GetSize()[0] + m_hitBox[2],
+		GetSize()[1] + m_hitBox[3]
+		);
+}
+void Entity::SetHitBox(float xModify, float yModify, float widthModify, float heightModify)
+{
+	m_hitBox[0] += xModify;
+	m_hitBox[1] += yModify;
+	m_hitBox[2] += widthModify;
+	m_hitBox[3] += heightModify;
 }

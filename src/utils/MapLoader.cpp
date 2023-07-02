@@ -5,7 +5,6 @@
 #include <fstream>
 
 static std::unordered_map<std::string, std::vector<std::vector<int>> > s_maps;
-
 void MapLoader::LoadMap(const std::string& mapName, const std::string& filepath)
 {
 	std::ifstream mapFile(filepath, std::ios::in, std::ios::binary);

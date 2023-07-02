@@ -9,7 +9,7 @@
 #include <array>
 
 const unsigned int MAX_TEXTURES = 32;
-const unsigned int MAX_QUADS = 2000;
+const unsigned int MAX_QUADS = 10000;
 const unsigned int MAX_VERTICES = MAX_QUADS * 4;
 const unsigned int MAX_INDICES = MAX_QUADS * 6;
 const float MAX_ZOOM = 20.0f;

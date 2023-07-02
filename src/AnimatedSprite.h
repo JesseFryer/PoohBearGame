@@ -6,6 +6,8 @@
 enum Animation
 {
 	IDLE,
+	WALK_LEFT,
+	WALK_RIGHT,
 	RUN,
 	JUMP
 };
@@ -29,6 +31,7 @@ public:
 	void SetSize(glm::vec2 size);
 	void AddAnimation(Animation name, float speed, std::vector<glm::vec4> animationTexCoords);
 	void SetSpriteSheet(float id);
+	void SetCurrentAnimation(Animation animation);
 
 private:
 	glm::vec2 m_position;

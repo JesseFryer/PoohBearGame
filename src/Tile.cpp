@@ -30,14 +30,15 @@ void Tile::Init(float texID)
 {
 	s_texID = texID;
 	SpriteSheet tileSheet(256, 256, 32, 32);
-	s_texCoords[GrassLeft]		   = tileSheet.GetTexCoords(0, 7, 1, 1);
-	s_texCoords[GrassMiddle]	   = tileSheet.GetTexCoords(1, 7, 1, 1);
-	s_texCoords[GrassRight]        = tileSheet.GetTexCoords(2, 7, 1, 1);
-	s_texCoords[DirtLeft]          = tileSheet.GetTexCoords(0, 6, 1, 1);
-	s_texCoords[DirtMiddle]        = tileSheet.GetTexCoords(1, 6, 1, 1);
-	s_texCoords[DirtRight]		   = tileSheet.GetTexCoords(2, 6, 1, 1);
-	s_texCoords[DirtBottomLeft]	   = tileSheet.GetTexCoords(0, 5, 1, 1);
-	s_texCoords[DirtBottomMiddle]  = tileSheet.GetTexCoords(1, 5, 1, 1);
-	s_texCoords[DirtBottomRight]   = tileSheet.GetTexCoords(2, 5, 1, 1);
-	s_texCoords[GrassPlatform]   = tileSheet.GetTexCoords(3, 4, 1, 1);
+	s_texCoords[GrassLeft]		   = tileSheet.GetTexCoords(0, 7, 1, 1, false);
+	s_texCoords[GrassMiddle]	   = tileSheet.GetTexCoords(1, 7, 1, 1, false);
+	s_texCoords[GrassRight]        = tileSheet.GetTexCoords(2, 7, 1, 1, false);
+	s_texCoords[GrassRight]        = tileSheet.GetTexCoords(2, 7, 1, 1, false);
+	s_texCoords[DirtLeft]          = tileSheet.GetTexCoords(0, 6, 1, 1, false);
+	s_texCoords[DirtMiddle]        = tileSheet.GetTexCoords(1, 6, 1, 1, false);
+	s_texCoords[DirtRight]		   = tileSheet.GetTexCoords(2, 6, 1, 1, false);
+	s_texCoords[DirtBottomLeft]	   = tileSheet.GetTexCoords(0, 5, 1, 1, false);
+	s_texCoords[DirtBottomMiddle]  = tileSheet.GetTexCoords(1, 5, 1, 1, false);
+	s_texCoords[DirtBottomRight]   = tileSheet.GetTexCoords(2, 5, 1, 1, false);
+	s_texCoords[GrassPlatform]   = tileSheet.GetTexCoords(3, 4, 1, 1, false);
 }

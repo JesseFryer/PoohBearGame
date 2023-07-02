@@ -13,8 +13,12 @@ void AnimatedSprite::Draw(Renderer2D& renderer)
 void AnimatedSprite::Update(float timeStep)
 {
 	m_animationIncrement += m_animationSpeeds[m_currentAnimation] * timeStep;
-	if (m_animationIncrement > m_animations[m_currentAnimation].size() - 1)	m_animationIncrement = 0.0f;
-	m_animationIndex = (unsigned int) m_animationIncrement;
+	m_animationIndex = (unsigned int)m_animationIncrement;
+	if (m_animationIndex > m_animations[m_currentAnimation].size() - 1) 
+	{
+		m_animationIndex = 0;
+		m_animationIncrement = 0.0f;
+	}
 }
 
 glm::vec2 AnimatedSprite::GetPosition()
@@ -60,4 +64,13 @@ void AnimatedSprite::AddAnimation(Animation name, float speed, std::vector<glm::
 void AnimatedSprite::SetSpriteSheet(float id)
 {
 	m_spriteSheetID = id;
+}
+void AnimatedSprite::SetCurrentAnimation(Animation animation)
+{
+	if (m_currentAnimation != animation) {
+		m_animationIndex = 0;
+		m_animationIncrement = 0.0f;
+	}
+	m_currentAnimation = animation;
+
 }
